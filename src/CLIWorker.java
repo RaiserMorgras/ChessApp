@@ -8,5 +8,7 @@ public class CLIWorker {
     public String getCommand() {
         return clScanner.next();
     }
-    public void
+    public void printMessage(String message) {
+        System.out.println(message);
+    }
 }
