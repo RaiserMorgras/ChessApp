@@ -3,8 +3,7 @@ public class Pawn extends ChessFigure {
         super(colorIsWhite);
     }
 
-    @Override
-    public char getCharRepresentation() {
-        return (colorIsWhite) ? '\u2659' : '\u265F';
+    public String toString() {
+        return Character.toString((colorIsWhite) ? '\u2659' : '\u265F');
     }
 }

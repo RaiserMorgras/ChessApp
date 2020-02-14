@@ -6,5 +6,4 @@ public abstract class ChessFigure {
     public boolean isWhite() {
         return colorIsWhite;
     }
-    public abstract char getCharRepresentation();
 }

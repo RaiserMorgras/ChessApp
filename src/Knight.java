@@ -3,8 +3,8 @@ public class Knight extends ChessFigure {
         super(colorIsWhite);
     }
 
-    @Override
-    public char getCharRepresentation() {
-        return (colorIsWhite) ? '\u2658' : '\u265E';
+
+    public String toString() {
+        return Character.toString((colorIsWhite) ? '\u2658' : '\u265E');
     }
 }

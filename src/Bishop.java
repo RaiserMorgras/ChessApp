@@ -3,8 +3,7 @@ public class Bishop extends ChessFigure {
         super(colorIsWhite);
     }
 
-    @Override
-    public char getCharRepresentation() {
-        return (colorIsWhite) ? '\u2657' : '\u265D';
+    public String toString() {
+        return Character.toString((colorIsWhite) ? '\u2657' : '\u265D');
     }
 }

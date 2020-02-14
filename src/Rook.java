@@ -3,8 +3,7 @@ public class Rook extends ChessFigure {
         super(colorIsWhite);
     }
 
-    @Override
-    public char getCharRepresentation() {
-        return (colorIsWhite) ? '\u2656' : '\u265C';
+    public String toString() {
+        return Character.toString((colorIsWhite) ? '\u2656' : '\u265C');
     }
 }
