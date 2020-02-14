@@ -1,3 +1,5 @@
+package ChessGame;
+
 public class BoardModel {
     private Tile[][] board;
 
@@ -43,14 +45,17 @@ public class BoardModel {
                     default:
                         break;
                 }
-                board[i][j] = new Tile(newFigure);
+                board[i][j] = new Tile(newFigure, i, j);
             }
         }
     }
-    public ChessFigure performTurn(TurnModel turnModel) {
-        ChessFigure movingFigure = board[turnModel.getFromCoordX()][turnModel.getFromCoordY()].removeFigure();
+    public Move prepareMove(TurnModel turnModel) {
+        return new Move(board[turnModel.getFromCoordX()][turnModel.getFromCoordY()], board[turnModel.getToCoordX()][turnModel.getToCoordY()]);
+    }
+    public ChessFigure performTurn(Move preparedMove) {
+        ChessFigure movingFigure = preparedMove.getCurrentTile().removeFigure();
 
-        return board[turnModel.getToCoordX()][turnModel.getToCoordY()].placeFigure(movingFigure);
+        return preparedMove.getNextTile().placeFigure(movingFigure);
     }
 
     public String toString() {
@@ -62,11 +67,10 @@ public class BoardModel {
             }
             result += "\n";
         }
-        result+= "\n  ";
+        result+= "  ";
         for (int j = 0; j < 8; j++) {
-            result += ('A'+j);
+            result += Character.toString('A'+j);
         }
         return result;
     }
-
 }
