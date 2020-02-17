@@ -1,4 +1,4 @@
-package ChessGame;
+package boardgame.chess;
 
 import java.util.Scanner;
 
@@ -8,7 +8,7 @@ public class CLIWorker {
         clScanner = new Scanner(System.in);
     }
     public String getCommand() {
-        return clScanner.next();
+        return clScanner.nextLine();
     }
     public void printMessage(String message) {
         System.out.println(message);

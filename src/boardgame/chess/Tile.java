@@ -1,14 +1,10 @@
-package ChessGame;
+package boardgame.chess;
 
 public class Tile {
     private ChessFigure placedFigure;
-    private byte rowIndex;
-    private byte columnIndex;
 
-    public Tile(ChessFigure figure, int rowIndex, int columnIndex) {
+    public Tile(ChessFigure figure) {
         this.placedFigure = figure;
-        this.rowIndex = (byte) rowIndex;
-        this.columnIndex = (byte) columnIndex;
     }
 
     public ChessFigure placeFigure(ChessFigure figure) {
@@ -24,16 +20,9 @@ public class Tile {
         placedFigure = null;
         return prevFigure;
     }
-    public byte getRowIndex() {
-        return rowIndex;
-    }
-    public byte getColumnIndex() {
-        return columnIndex;
-    }
     public boolean hasFigure() {
         return (placedFigure != null);
     }
-    public boolean isPlacedFigureWhite() { return placedFigure.colorIsWhite;}
     public String toString() {
         return (hasFigure()) ? placedFigure.toString() : " ";
     }

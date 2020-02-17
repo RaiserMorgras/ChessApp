@@ -1,4 +1,4 @@
-package ChessGame;
+package boardgame.chess;
 
 public class GameControl {
     private CLIWorker cliWorker;
@@ -8,7 +8,7 @@ public class GameControl {
         cliWorker = new CLIWorker();
         boardModel = new BoardModel();
 
-        boardModel.setup();
+        boardModel.setup(8, 8, new ClassicChessTileGenerator());
     }
     public void start() {
         ChessFigure lastTakenFigure = null;
@@ -20,11 +20,11 @@ public class GameControl {
             cliWorker.printMessage("Turn format is \"x0 x0\"");
             cliWorker.printMessage(((turnCount % 2 == 1) ? "White" : "Black") + " player's turn");
             command = cliWorker.getCommand();
-            TurnModel tm = TurnModel.parseTurn(command);
-            if (tm != null) {
-                Move preparedMove = boardModel.prepareMove(tm);
-                if (preparedMove.selfCheck()) {
-                    lastTakenFigure = boardModel.performTurn(preparedMove);
+            BoardMove boardMove = BoardMove.parseBoardMove(command);
+            if (boardMove != null) {
+                Tile currentTile = boardModel.getTile(boardMove.getStartXCoord(), boardMove.getStartYCoord());
+                if (currentTile.getPlacedFigure().validateMove(boardMove, boardModel)) {
+                    lastTakenFigure = boardModel.performTurn(boardMove);
                     turnCount++;
                 }
                 else {
@@ -38,9 +38,12 @@ public class GameControl {
             cliWorker.printMessage("press enter to proceed");
             cliWorker.getCommand();
         }
-        while(lastTakenFigure == null || lastTakenFigure.isKing() == false);
+        while(lastTakenFigure == null || !lastTakenFigure.isKing());
         if (lastTakenFigure.isWhite()) {
             cliWorker.printMessage("White player has won!");
+        }
+        else {
+            cliWorker.printMessage("Black player has won!");
         }
     }
 }
