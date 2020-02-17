@@ -1,5 +1,7 @@
 package boardgame.chess;
 
+import boardgame.chess.figures.ChessFigure;
+
 public class GameControl {
     private CLIWorker cliWorker;
     private BoardModel boardModel;

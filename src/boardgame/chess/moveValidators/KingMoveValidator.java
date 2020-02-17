@@ -1,6 +1,11 @@
-package boardgame.chess;
+package boardgame.chess.moveValidators;
 
-public class KingMoveValidator implements ChessMoveValidator{
+import boardgame.chess.BoardModel;
+import boardgame.chess.BoardMove;
+import boardgame.chess.Tile;
+import boardgame.chess.moveValidators.ChessMoveValidator;
+
+public class KingMoveValidator implements ChessMoveValidator {
     @Override
     public boolean validateMove(BoardMove boardMove, BoardModel boardModel) {
         Tile currentTile = boardModel.getTile(boardMove.getStartXCoord(), boardMove.getStartYCoord());

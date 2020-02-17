@@ -1,4 +1,8 @@
-package boardgame.chess;
+package boardgame.chess.moveValidators;
+
+import boardgame.chess.BoardModel;
+import boardgame.chess.BoardMove;
+import boardgame.chess.Tile;
 
 public class BishopMoveValidator implements ChessMoveValidator {
     @Override

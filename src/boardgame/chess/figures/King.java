@@ -1,4 +1,6 @@
-package boardgame.chess;
+package boardgame.chess.figures;
+
+import boardgame.chess.moveValidators.KingMoveValidator;
 
 public class King extends ChessFigure {
     public King(boolean colorIsWhite) {

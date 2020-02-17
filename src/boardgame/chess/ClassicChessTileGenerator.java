@@ -1,5 +1,7 @@
 package boardgame.chess;
 
+import boardgame.chess.figures.*;
+
 public class ClassicChessTileGenerator implements TileGenerator {
 
     @Override

@@ -1,5 +1,7 @@
 package boardgame.chess;
 
+import boardgame.chess.figures.ChessFigure;
+
 public class Tile {
     private ChessFigure placedFigure;
 

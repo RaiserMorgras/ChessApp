@@ -1,6 +1,11 @@
-package boardgame.chess;
+package boardgame.chess.moveValidators;
 
-public class PawnMoveValidator implements ChessMoveValidator{
+import boardgame.chess.BoardModel;
+import boardgame.chess.BoardMove;
+import boardgame.chess.Tile;
+import boardgame.chess.moveValidators.ChessMoveValidator;
+
+public class PawnMoveValidator implements ChessMoveValidator {
 
 
     @Override

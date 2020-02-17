@@ -1,4 +1,8 @@
-package boardgame.chess;
+package boardgame.chess.figures;
+
+import boardgame.chess.BoardModel;
+import boardgame.chess.BoardMove;
+import boardgame.chess.moveValidators.ChessMoveValidator;
 
 public abstract class ChessFigure{
     protected final boolean colorIsWhite;

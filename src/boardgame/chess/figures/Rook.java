@@ -1,4 +1,6 @@
-package boardgame.chess;
+package boardgame.chess.figures;
+
+import boardgame.chess.moveValidators.RookMoveValidator;
 
 public class Rook extends ChessFigure {
     public Rook(boolean colorIsWhite) {

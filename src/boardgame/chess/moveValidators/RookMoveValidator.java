@@ -1,4 +1,9 @@
-package boardgame.chess;
+package boardgame.chess.moveValidators;
+
+import boardgame.chess.BoardModel;
+import boardgame.chess.BoardMove;
+import boardgame.chess.Tile;
+import boardgame.chess.moveValidators.ChessMoveValidator;
 
 public class RookMoveValidator implements ChessMoveValidator {
     @Override

@@ -1,4 +1,6 @@
-package boardgame.chess;
+package boardgame.chess.figures;
+
+import boardgame.chess.moveValidators.BishopMoveValidator;
 
 public class Bishop extends ChessFigure {
 
