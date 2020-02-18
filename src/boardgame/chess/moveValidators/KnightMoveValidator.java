@@ -17,7 +17,7 @@ public class KnightMoveValidator implements ChessMoveValidator {
                     case 1:
                     case -1:
                         if (targetTile.hasFigure()) {
-                            return currentTile.getPlacedFigure().isWhite() && !targetTile.getPlacedFigure().isWhite();
+                            return currentTile.getPlacedFigure().isWhite() == !targetTile.getPlacedFigure().isWhite();
                         }
                         else {
                             return true;
@@ -31,7 +31,7 @@ public class KnightMoveValidator implements ChessMoveValidator {
                     case 2:
                     case -2:
                         if (targetTile.hasFigure()) {
-                            return currentTile.getPlacedFigure().isWhite() && !targetTile.getPlacedFigure().isWhite();
+                            return currentTile.getPlacedFigure().isWhite() == !targetTile.getPlacedFigure().isWhite();
                         }
                         else {
                             return true;
