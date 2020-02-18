@@ -33,13 +33,13 @@ public class BoardModel {
         for (int i = rowCount - 1; i >= 0; i--) {
             result += (i + 1) + " ";
             for (int j = 0; j < columnCount; j++) {
-                result += board[i][j].toString();
+                result += board[i][j].toString() + " ";
             }
             result += "\n";
         }
         result+= "  ";
         for (int j = 0; j < columnCount; j++) {
-            result += Character.toString('A'+j);
+            result += Character.toString('A'+j) + " ";
         }
         return result;
     }

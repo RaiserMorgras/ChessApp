@@ -31,21 +31,24 @@ public class GameControl {
                 }
                 else {
                     cliWorker.printErrorMessage("The turn " + command + " is not valid");
+                    cliWorker.printMessage("press enter to proceed");
+                    cliWorker.getCommand();
                 }
 
             }
             else {
                 cliWorker.printErrorMessage("The command " + command + " could not be parsed");
+                cliWorker.printMessage("press enter to proceed");
+                cliWorker.getCommand();
             }
-            cliWorker.printMessage("press enter to proceed");
-            cliWorker.getCommand();
         }
         while(lastTakenFigure == null || !lastTakenFigure.isKing());
-        if (lastTakenFigure.isWhite()) {
+        if (!lastTakenFigure.isWhite()) {
             cliWorker.printMessage("White player has won!");
         }
         else {
             cliWorker.printMessage("Black player has won!");
         }
+        cliWorker.printMessage(boardModel.toString());
     }
 }
