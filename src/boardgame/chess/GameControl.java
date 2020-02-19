@@ -3,52 +3,37 @@ package boardgame.chess;
 import boardgame.chess.figures.ChessFigure;
 
 public class GameControl {
-    private CLIWorker cliWorker;
+    private IChessUI uiWorker;
     private BoardModel boardModel;
 
-    public GameControl() {
-        cliWorker = new CLIWorker();
-        boardModel = new BoardModel();
-
-        boardModel.setup(8, 8, new ClassicChessTileGenerator());
+    public GameControl(IChessUI uiWorker) {
+        this.uiWorker = uiWorker;
+        boardModel = new BoardModel(8, 8, new ClassicChessTileGenerator());
     }
     public void start() {
         ChessFigure lastTakenFigure = null;
-        String command;
         int turnCount = 1;
         do {
-            cliWorker.printMessage("Turn " + turnCount);
-            cliWorker.printMessage(boardModel.toString());
-            cliWorker.printMessage("Turn format is \"x0 x0\"");
-            cliWorker.printMessage(((turnCount % 2 == 1) ? "White" : "Black") + " player's turn");
-            command = cliWorker.getCommand();
-            BoardMove boardMove = BoardMove.parseBoardMove(command);
+            uiWorker.showBoardState(boardModel);
+            uiWorker.turnStart(turnCount, null);
+            BoardMove boardMove = uiWorker.getBoardMoveCommand(null);
             if (boardMove != null) {
-                Tile currentTile = boardModel.getTile(boardMove.getStartXCoord(), boardMove.getStartYCoord());
-                if (currentTile.getPlacedFigure().validateMove(boardMove, boardModel)) {
+                boolean moveValidationResult = boardModel.validateMove(boardMove);
+                if (moveValidationResult) {
                     lastTakenFigure = boardModel.performTurn(boardMove);
                     turnCount++;
                 }
                 else {
-                    cliWorker.printErrorMessage("The turn " + command + " is not valid");
-                    cliWorker.printMessage("press enter to proceed");
-                    cliWorker.getCommand();
+                    uiWorker.putErrorMessage(null, "The turn " + boardMove +" is not valid");
                 }
 
             }
             else {
-                cliWorker.printErrorMessage("The command " + command + " could not be parsed");
-                cliWorker.printMessage("press enter to proceed");
-                cliWorker.getCommand();
+                uiWorker.putErrorMessage(null, "The command could not be parsed");
             }
         }
         while(lastTakenFigure == null || !lastTakenFigure.isKing());
-        if (!lastTakenFigure.isWhite()) {
-            cliWorker.printMessage("White player has won!");
-        }
-        else {
-            cliWorker.printMessage("Black player has won!");
-        }
-        cliWorker.printMessage(boardModel.toString());
+        uiWorker.gameHasEnded((lastTakenFigure.isWhite()) ? GameEndState.BLACK_WON : GameEndState.WHITE_WON);
+        uiWorker.showBoardState(boardModel);
     }
 }
