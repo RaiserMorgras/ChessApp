@@ -13,7 +13,7 @@ public class BoardMove {
         this.endYCoord = endYCoord;
     }
     public static BoardMove parseBoardMove(String input) {
-        String[] tokens = input.split(" ");
+        String[] tokens = input.toLowerCase().split(" ");
         if (tokens.length == 2) {
             char[] tokensFrom = tokens[0].toCharArray();
             char[] tokensTo = tokens[1].toCharArray();
@@ -53,5 +53,11 @@ public class BoardMove {
     public int getColumnIndexShift() {
         return endYCoord - startYCoord;
     }
-
+    public String toString() {
+        return Character.toString(startYCoord + 'a') +
+                Character.toString(startXCoord + '1') +
+                " " +
+                Character.toString(endYCoord + 'a') +
+                Character.toString(endXCoord + '1');
+    }
 }
