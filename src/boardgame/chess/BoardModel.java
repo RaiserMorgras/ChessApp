@@ -7,7 +7,7 @@ public class BoardModel {
     private int rowCount;
     private int columnCount;
 
-    public void setup(int rowCount, int columnCount, TileGenerator gen) {
+    public BoardModel(int rowCount, int columnCount, TileGenerator gen) {
         this.rowCount = rowCount;
         this.columnCount = columnCount;
         board = new Tile[rowCount][columnCount];
@@ -42,5 +42,10 @@ public class BoardModel {
             result += Character.toString('A'+j) + " ";
         }
         return result;
+    }
+
+    public boolean validateMove(BoardMove boardMove) {
+        Tile currentTile = board[boardMove.getStartXCoord()][boardMove.getStartYCoord()];
+        return currentTile.getPlacedFigure().validateMove(boardMove, this);
     }
 }
