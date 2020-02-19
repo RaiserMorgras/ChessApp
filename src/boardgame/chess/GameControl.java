@@ -12,13 +12,16 @@ public class GameControl {
     }
     public void start() {
         ChessFigure lastTakenFigure = null;
+        GameState gameState;
         int turnCount = 1;
         do {
+            if (turnCount % 2 == 1) gameState = GameState.WHITE_PLAYER_TURN;
+            else gameState = GameState.BLACK_PLAYER_TURN;
             uiWorker.showBoardState(boardModel);
-            uiWorker.turnStart(turnCount, null);
-            BoardMove boardMove = uiWorker.getBoardMoveCommand(null);
+            uiWorker.turnStartSequence(turnCount, gameState, null);
+            BoardMove boardMove = uiWorker.getMoveCommand(null);
             if (boardMove != null) {
-                boolean moveValidationResult = boardModel.validateMove(boardMove);
+                boolean moveValidationResult = boardModel.validateMove(boardMove, gameState);
                 if (moveValidationResult) {
                     lastTakenFigure = boardModel.performTurn(boardMove);
                     turnCount++;
@@ -33,7 +36,8 @@ public class GameControl {
             }
         }
         while(lastTakenFigure == null || !lastTakenFigure.isKing());
-        uiWorker.gameHasEnded((lastTakenFigure.isWhite()) ? GameEndState.BLACK_WON : GameEndState.WHITE_WON);
+        gameState = (lastTakenFigure.isWhite()) ? GameState.BLACK_PLAYER_WON : GameState.WHITE_PLAYER_WON;
+        uiWorker.gameEndSequence(gameState);
         uiWorker.showBoardState(boardModel);
     }
 }

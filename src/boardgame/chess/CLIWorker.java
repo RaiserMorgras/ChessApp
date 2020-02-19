@@ -15,7 +15,7 @@ public class CLIWorker implements IChessUI{
     }
 
     @Override
-    public BoardMove getBoardMoveCommand(String outputMessage) {
+    public BoardMove getMoveCommand(String outputMessage) {
         if (outputMessage != null) {
             System.out.println(outputMessage);
         }
@@ -24,9 +24,18 @@ public class CLIWorker implements IChessUI{
     }
 
     @Override
-    public void turnStart(int turnCount, String extraMessage) {
+    public void turnStartSequence(int turnCount, GameState currentPlayer, String extraMessage) {
         System.out.println("Turn: " + turnCount);
-        System.out.println(((turnCount % 2) == 1 ? "White" : " Black") + " player's turn");
+        switch (currentPlayer) {
+            case WHITE_PLAYER_TURN:
+                System.out.println("White player's turn");
+                break;
+            case BLACK_PLAYER_TURN:
+                System.out.println("Black player's turn");
+                break;
+            default:
+                throw new RuntimeException("Unexpected game state encountered at start of turn: " + currentPlayer);
+        }
     }
 
     @Override
@@ -40,19 +49,19 @@ public class CLIWorker implements IChessUI{
     }
 
     @Override
-    public void gameHasEnded(GameEndState gameEndState) {
-        switch (gameEndState) {
-            case WHITE_WON:
+    public void gameEndSequence(GameState gameState) {
+        switch (gameState) {
+            case WHITE_PLAYER_WON:
                 System.out.println("White player has won!");
                 break;
-            case BLACK_WON:
+            case BLACK_PLAYER_WON:
                 System.out.println("Black player has won!");
                 break;
-            case DRAW:
+            case GAME_ENDED_DRAW:
                 System.out.println("The game has ended in a draw");
                 break;
             default:
-                System.out.println("Incorrect game ending state occurred");
+                throw new RuntimeException("Unexpected game state encountered at end of the game: " + gameState);
         }
     }
 }

@@ -3,7 +3,6 @@ package boardgame.chess.moveValidators;
 import boardgame.chess.BoardModel;
 import boardgame.chess.BoardMove;
 import boardgame.chess.Tile;
-import boardgame.chess.moveValidators.ChessMoveValidator;
 
 public class PawnMoveValidator implements ChessMoveValidator {
 
@@ -14,7 +13,7 @@ public class PawnMoveValidator implements ChessMoveValidator {
         Tile targetTile = boardModel.getTile(boardMove.getEndXCoord(), boardMove.getEndYCoord());
         switch (boardMove.getRowIndexShift()) {
             case 2:
-                if (!currentTile.getPlacedFigure().isWhite()) {
+                if (!currentTile.isPlacedFigureWhite()) {
                     return false;
                 }
                 else {
@@ -31,7 +30,7 @@ public class PawnMoveValidator implements ChessMoveValidator {
                     }
                 }
             case 1:
-                if (!currentTile.getPlacedFigure().isWhite()) {
+                if (!currentTile.isPlacedFigureWhite()) {
                     return false;
                 }
                 else {
@@ -40,13 +39,13 @@ public class PawnMoveValidator implements ChessMoveValidator {
                             return !targetTile.hasFigure();
                         case 1:
                         case -1:
-                            return targetTile.hasFigure() && !targetTile.getPlacedFigure().isWhite();
+                            return targetTile.hasFigure() && !targetTile.isPlacedFigureWhite();
                         default:
                             return false;
                     }
                 }
             case -1:
-                if (currentTile.getPlacedFigure().isWhite()) {
+                if (currentTile.isPlacedFigureWhite()) {
                     return false;
                 }
                 else {
@@ -55,13 +54,13 @@ public class PawnMoveValidator implements ChessMoveValidator {
                             return !targetTile.hasFigure();
                         case 1:
                         case -1:
-                            return targetTile.hasFigure() && targetTile.getPlacedFigure().isWhite();
+                            return targetTile.hasFigure() && targetTile.isPlacedFigureWhite();
                         default:
                             return false;
                     }
                 }
             case -2:
-                if (currentTile.getPlacedFigure().isWhite()) {
+                if (currentTile.isPlacedFigureWhite()) {
                     return false;
                 }
                 else {

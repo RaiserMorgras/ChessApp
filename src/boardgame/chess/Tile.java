@@ -22,6 +22,9 @@ public class Tile {
         placedFigure = null;
         return prevFigure;
     }
+    public boolean isPlacedFigureWhite() {
+        return placedFigure.isWhite();
+    }
     public boolean hasFigure() {
         return (placedFigure != null);
     }

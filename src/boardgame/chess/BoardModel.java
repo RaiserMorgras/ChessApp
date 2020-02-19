@@ -44,8 +44,34 @@ public class BoardModel {
         return result;
     }
 
-    public boolean validateMove(BoardMove boardMove) {
+    public boolean validateMove(BoardMove boardMove, GameState gameState) {
         Tile currentTile = board[boardMove.getStartXCoord()][boardMove.getStartYCoord()];
-        return currentTile.getPlacedFigure().validateMove(boardMove, this);
+        Tile targetTile = board[boardMove.getEndXCoord()][boardMove.getEndYCoord()];
+
+        if (!currentTile.hasFigure()) {
+            return false;
+        }
+        ChessFigure figureToMove = currentTile.getPlacedFigure();
+
+        switch (gameState) {
+            case WHITE_PLAYER_TURN:
+                if (!figureToMove.isWhite()) {
+                    return false;
+                }
+                else {
+                    if (targetTile.hasFigure() && targetTile.isPlacedFigureWhite()) return false;
+                    else return figureToMove.validateMove(boardMove, this);
+                }
+            case BLACK_PLAYER_TURN:
+                if (figureToMove.isWhite()) {
+                    return false;
+                }
+                else {
+                    if (targetTile.hasFigure() && !targetTile.isPlacedFigureWhite()) return false;
+                    else return figureToMove.validateMove(boardMove, this);
+                }
+            default:
+                throw new RuntimeException("Unexpected game state in player's turn: " + gameState);
+        }
     }
 }
