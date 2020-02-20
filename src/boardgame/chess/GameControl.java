@@ -12,11 +12,10 @@ public class GameControl {
     }
     public void start() {
         ChessFigure lastTakenFigure = null;
-        GameState gameState;
+        GameState gameState = GameState.firstTurn(true);
         int turnCount = 1;
-        do {
-            if (turnCount % 2 == 1) gameState = GameState.WHITE_PLAYER_TURN;
-            else gameState = GameState.BLACK_PLAYER_TURN;
+        while(gameState == GameState.WHITE_PLAYER_TURN || gameState == GameState.BLACK_PLAYER_TURN)
+        {
             uiWorker.showBoardState(boardModel);
             uiWorker.turnStartSequence(turnCount, gameState, null);
             BoardMove boardMove = uiWorker.getMoveCommand(null);
@@ -34,9 +33,13 @@ public class GameControl {
             else {
                 uiWorker.putErrorMessage(null, "The command could not be parsed");
             }
+            if (lastTakenFigure == null || !lastTakenFigure.isKing()) {
+                gameState = GameState.nextPlayer(gameState);
+            }
+            else {
+                gameState = GameState.finishGame(gameState);
+            }
         }
-        while(lastTakenFigure == null || !lastTakenFigure.isKing());
-        gameState = (lastTakenFigure.isWhite()) ? GameState.BLACK_PLAYER_WON : GameState.WHITE_PLAYER_WON;
         uiWorker.gameEndSequence(gameState);
         uiWorker.showBoardState(boardModel);
     }

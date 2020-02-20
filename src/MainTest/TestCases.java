@@ -39,5 +39,12 @@ public class TestCases {
         Assert.assertNotNull(testKingMove);
         Assert.assertTrue(bm.validateMove(testKingMove, GameState.BLACK_PLAYER_TURN));
     }
+    @Test
+    public void testCase3() {
+        String command = "e7 e5";
+        BoardMove move = BoardMove.parseBoardMove(command);
+        boolean result = bm.validateMove(move, GameState.BLACK_PLAYER_TURN);
+        assertTrue(result);
+    }
 
 }

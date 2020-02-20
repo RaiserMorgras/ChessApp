@@ -45,6 +45,10 @@ public class BoardModel {
     }
 
     public boolean validateMove(BoardMove boardMove, GameState gameState) {
+        if (boardMove.getRowIndexShift() == 0 && boardMove.getColumnIndexShift() == 0) {
+            return false;
+        }
+
         Tile currentTile = board[boardMove.getStartXCoord()][boardMove.getStartYCoord()];
         Tile targetTile = board[boardMove.getEndXCoord()][boardMove.getEndYCoord()];
 

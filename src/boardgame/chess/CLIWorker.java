@@ -41,10 +41,10 @@ public class CLIWorker implements IChessUI{
     @Override
     public void putErrorMessage(Exception exception, String extraMessage) {
         if (exception != null) {
-            System.err.println(exception.getMessage());
+            exception.printStackTrace();
         }
         if (extraMessage != null) {
-            System.err.println(extraMessage);
+            exception.printStackTrace();
         }
     }
 
