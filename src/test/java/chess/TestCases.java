@@ -33,7 +33,7 @@ public class TestCases {
         bm.performTurn(prepMove1);
         bm.performTurn(prepMove2);
 
-        IChessUI ui = new CLIWorker();
+        IChessUI ui = new CLIWorker(System.in, System.out, System.err);
         ui.showBoardState(bm);
 
         BoardMove testKingMove = BoardMove.parseBoardMove("e8 f7");

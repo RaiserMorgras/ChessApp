@@ -14,6 +14,7 @@ public class BoardMove {
         this.endXCoord = endXCoord;
         this.endYCoord = endYCoord;
     }
+
     public static BoardMove parseBoardMove(String input) {
         String[] tokens = input.toLowerCase().split(" ");
         if (tokens.length == 2) {
@@ -37,6 +38,7 @@ public class BoardMove {
         }
         return null;
     }
+
     public int getStartXCoord() {
         return startXCoord;
     }

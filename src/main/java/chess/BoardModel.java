@@ -18,6 +18,7 @@ public class BoardModel {
             }
         }
     }
+
     public ChessFigure performTurn(BoardMove boardMove) {
         Tile currentTile = board[boardMove.getStartXCoord()][boardMove.getStartYCoord()];
         Tile targetTile = board[boardMove.getEndXCoord()][boardMove.getEndYCoord()];
@@ -26,9 +27,11 @@ public class BoardModel {
 
         return targetTile.placeFigure(movingFigure);
     }
+
     public Tile getTile(int x, int y) {
         return board[x][y];
     }
+
     public String toString() {
         String result = "";
         for (int i = rowCount - 1; i >= 0; i--) {

@@ -2,62 +2,63 @@ package chess;
 
 import chess.gameStates.GameStateID;
 
+import java.io.InputStream;
+import java.io.PrintStream;
 import java.util.Scanner;
 
 public class CLIWorker implements IChessUI{
-    private Scanner clScanner;
-    public CLIWorker() {
-        clScanner = new Scanner(System.in);
+    private PrintStream printStream;
+    private PrintStream errorStream;
+    private Scanner inputStreamScanner;
+
+    public CLIWorker(InputStream inputStream, PrintStream printStream, PrintStream errorStream) {
+        this.inputStreamScanner = new Scanner(inputStream);
+        this.printStream = printStream;
+        this.errorStream = errorStream;
     }
-
-
 
     public void showBoardState(BoardModel boardModel) {
-        System.out.println(boardModel.toString());
+        printStream.println(boardModel.toString());
     }
-
 
     public BoardMove getMoveCommand(String outputMessage) {
         if (outputMessage != null) {
-            System.out.println(outputMessage);
+            printStream.println(outputMessage);
         }
-        System.out.println("Turn format is \"x0 x0\", case insensitive");
-        return BoardMove.parseBoardMove(clScanner.nextLine());
+        printStream.println("Turn format is \"x0 x0\", case insensitive");
+        return BoardMove.parseBoardMove(inputStreamScanner.nextLine());
     }
 
-
     public void turnStartSequence(int turnCount, GameStateID currentPlayer, String extraMessage) {
-        System.out.println("Turn: " + turnCount);
+        printStream.println("Turn: " + turnCount);
         switch (currentPlayer) {
             case WHITE_PLAYER_TURN:
-                System.out.println("White player's turn");
+                printStream.println("White player's turn");
                 break;
             case BLACK_PLAYER_TURN:
-                System.out.println("Black player's turn");
+                printStream.println("Black player's turn");
                 break;
             default:
                 throw new RuntimeException("Unexpected game state encountered at start of turn: " + currentPlayer);
         }
     }
 
-
     public void putErrorMessage(Exception exception, String extraMessage) {
         if (exception != null) {
-            exception.printStackTrace();
+            exception.printStackTrace(errorStream);
         }
         if (extraMessage != null) {
-            exception.printStackTrace();
+            errorStream.println(extraMessage);
         }
     }
-
 
     public void gameEndSequence(GameStateID gameStateID) {
         switch (gameStateID) {
             case WHITE_PLAYER_WON:
-                System.out.println("White player has won!");
+                printStream.println("White player has won!");
                 break;
             case BLACK_PLAYER_WON:
-                System.out.println("Black player has won!");
+                printStream.println("Black player has won!");
                 break;
             default:
                 throw new RuntimeException("Unexpected game state encountered at end of the game: " + gameStateID);
