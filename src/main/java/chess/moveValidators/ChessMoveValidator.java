@@ -14,7 +14,7 @@ public interface ChessMoveValidator {
         int x = boardMove.getStartXCoord() + xStep;
         int y = boardMove.getStartYCoord() + yStep;
 
-        while (x != boardMove.getEndXCoord() && y != boardMove.getEndYCoord()) {
+        while (x != boardMove.getEndXCoord() || y != boardMove.getEndYCoord()) {
             if (boardModel.getTile(x, y).hasFigure()) {
                 return false;
             }
