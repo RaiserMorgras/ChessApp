@@ -22,6 +22,7 @@ public class ChessFigureTest {
     public void validateMove() {
         ChessFigure figure = new Pawn(false);
         BoardModel bm = mock(BoardModel.class);
+
         when(bm.getTile(6, 4)).thenReturn(new Tile(figure));
         when(bm.getTile(5, 4)).thenReturn(new Tile(null));
         when(bm.getTile(4, 4)).thenReturn(new Tile(null));
@@ -45,5 +46,7 @@ public class ChessFigureTest {
 
     @Test
     public void isKing() {
+        ChessFigure figure = new Knight(false);
+        assertFalse(figure.isKing());
     }
 }
