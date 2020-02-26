@@ -13,7 +13,7 @@ public class BishopMoveValidatorTest {
     @Test
     public void validateMove() {
         ChessMoveValidator validator = spy(new BishopMoveValidator());
-        BoardMove move = mock(BoardMove.class);
+        BoardMove move = new BoardMove(7, 3, 3, 7);
         BoardModel model = mock(BoardModel.class);
 
         Tile tile1 = mock(Tile.class);
@@ -23,13 +23,6 @@ public class BishopMoveValidatorTest {
         when(tile1.hasFigure()).thenReturn(false);
         when(tile2.hasFigure()).thenReturn(false);
         when(tile3.hasFigure()).thenReturn(false);
-
-        when(move.getStartXCoord()).thenReturn(7);
-        when(move.getStartYCoord()).thenReturn(3);
-        when(move.getEndXCoord()).thenReturn(3);
-        when(move.getEndYCoord()).thenReturn(7);
-        when(move.getRowIndexShift()).thenReturn(-4);
-        when(move.getColumnIndexShift()).thenReturn(4);
 
         when(model.getTile(6, 4)).thenReturn(tile1);
         when(model.getTile(5, 5)).thenReturn(tile2);

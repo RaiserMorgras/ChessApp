@@ -11,12 +11,9 @@ public class KingMoveValidatorTest {
 
     @Test
     public void validateMove() {
-        BoardMove move = mock(BoardMove.class);
+        BoardMove move = new BoardMove(2, 3, 3, 5);
         BoardModel model = mock(BoardModel.class);
         ChessMoveValidator validator = spy(new KingMoveValidator());
-
-        when(move.getColumnIndexShift()).thenReturn(2);
-        when(move.getRowIndexShift()).thenReturn(1);
 
         assertFalse(validator.validateMove(move, model));
 
