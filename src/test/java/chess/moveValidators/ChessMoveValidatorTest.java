@@ -17,6 +17,13 @@ import static org.mockito.Mockito.*;
 
 @RunWith(Parameterized.class)
 public class ChessMoveValidatorTest {
+    private final int moveStartX;
+    private final int moveStartY;
+    private final int moveEndX;
+    private final int moveEndY;
+    private final BoardModel boardMock;
+    private final boolean expected;
+
     public ChessMoveValidatorTest(int moveStartX,
                                   int moveStartY,
                                   int moveEndX,
@@ -51,12 +58,7 @@ public class ChessMoveValidatorTest {
                 {4, 2, 6, 0, Arrays.asList(false), true}
         });
     }
-    private final int moveStartX;
-    private final int moveStartY;
-    private final int moveEndX;
-    private final int moveEndY;
-    private final BoardModel boardMock;
-    private final boolean expected;
+
 
     @Test
     public void areInnerTilesFree() {
