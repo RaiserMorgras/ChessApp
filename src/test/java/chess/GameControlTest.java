@@ -26,7 +26,6 @@ public class GameControlTest {
 
     @Test
     public void start() {
-        InputStream inputStream = ctx.getBean(InputStream.class);
         OutputStream outputStream = ctx.getBean("outputStream", OutputStream.class);
         OutputStream errorStream = ctx.getBean("errorStream", OutputStream.class);
         GameControl gc = (GameControl) ctx.getBean("gameControl");
@@ -44,7 +43,6 @@ public class GameControlTest {
 @Configuration
 @Import(ChessBeanConfig.class)
 class ChessTestConfig {
-    @Autowired ChessBeanConfig chessBeanConfig;
 
     @Bean
     public InputStream inputStream() {
