@@ -1,8 +1,11 @@
 package chess;
 
-import chess.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import java.io.InputStream;
+import java.io.OutputStream;
+
 
 @Configuration
 public class ChessBeanConfig {
@@ -15,11 +18,14 @@ public class ChessBeanConfig {
         return new BoardModel(8,8, tileGenerator);
     }
     @Bean
-    public IChessUI chessUI() {
-        return new CLIWorker();
+    public GameControl gameControl(IChessUI chessStreamUI, BoardModel boardModel) {
+        return new GameControl(chessStreamUI, boardModel);
     }
+
     @Bean
-    public GameControl gameControl(IChessUI chessUI, BoardModel boardModel) {
-        return new GameControl(chessUI, boardModel);
+    public IOStreamUIWorker chessStreamUI(InputStream inputStream,
+                                          OutputStream outputStream,
+                                          OutputStream errorStream) {
+        return new IOStreamUIWorker(inputStream, outputStream, errorStream);
     }
 }
