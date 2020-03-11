@@ -18,7 +18,7 @@ public class MovesHistory{
         return moves.get(moves.size() - 1);
     }
     public MovesHistory beginIteration() {
-        iterator = moves.listIterator();
+        iterator = moves.iterator();
         return this;
     }
     public boolean hasNextMove() {
