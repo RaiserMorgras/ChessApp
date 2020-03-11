@@ -1,5 +1,6 @@
 package chess;
 
+import chess.gameStates.GameStateID;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.Before;
@@ -30,19 +31,20 @@ public class LoggingUIWorkerTest {
     }
 
     @Test
-    public void getMoveCommand() {
-    }
-
-    @Test
     public void turnStartSequence() {
+        loggingUIWorker.turnStartSequence(3,
+                GameStateID.WHITE_PLAYER_TURN,
+                "Test message");
     }
 
     @Test
     public void putErrorMessage() {
+        loggingUIWorker.putErrorMessage(new Exception("Test error message"), null);
     }
 
     @Test
     public void gameEndSequence() {
+        loggingUIWorker.gameEndSequence(GameStateID.WHITE_PLAYER_WON);
     }
 }
 @Configuration
