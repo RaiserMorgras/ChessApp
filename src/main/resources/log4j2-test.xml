@@ -9,10 +9,16 @@
             <ThresholdFilter level="warn" />
             <PatternLayout pattern="%m%n"/>
         </File>
+        <File name="beans-info" fileName="LOG.beans">
+            <PatternLayout pattern="%level bean: %m%n"/>
+        </File>
     </Appenders>
     <Loggers>
         <Logger name="infoOutput" level="info">
             <AppenderRef ref="info"/>
+        </Logger>
+        <Logger name="chess.misc.BeanLoggingBeans" level = "info">
+            <AppenderRef ref="beans-info"/>
         </Logger>
         <Root level="warn">
             <AppenderRef ref="error"/>
