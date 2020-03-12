@@ -9,7 +9,7 @@
             <ThresholdFilter level="warn" />
             <PatternLayout pattern="%m%n"/>
         </File>
-        <File name="beans-info" fileName="LOG.beans">
+        <File name="beans-info" fileName="LOG.beans" append="false">
             <PatternLayout pattern="%level bean: %m%n"/>
         </File>
     </Appenders>
