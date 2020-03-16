@@ -2,6 +2,7 @@ package chess;
 
 import chess.UI.IChessUI;
 import chess.figures.ChessFigure;
+import chess.gameStates.GameStateID;
 import chess.gameStates.StateControl;
 
 public class GameControl {
@@ -46,4 +47,14 @@ public class GameControl {
         uiWorker.gameEndSequence(stateControl.getStateID());
         uiWorker.showBoardState(boardModel);
     }
+    protected void initStateControl() {
+
+    }
+    protected void playerTurn(int turnCount, GameStateID gameStateID) {
+        
+    }
+    protected void finishGame() {
+
+    }
+
 }
