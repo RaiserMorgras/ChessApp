@@ -5,8 +5,8 @@ import chess.figures.ChessFigure;
 import chess.gameStates.StateControl;
 
 public class GameControl {
-    private IChessUI uiWorker;
-    private BoardModel boardModel;
+    protected IChessUI uiWorker;
+    protected BoardModel boardModel;
 
     public GameControl(IChessUI uiWorker, BoardModel boardModel) {
         this.uiWorker = uiWorker;
