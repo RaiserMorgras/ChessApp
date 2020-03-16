@@ -1,5 +1,7 @@
-package chess;
+package chess.UI;
 
+import chess.BoardModel;
+import chess.ClassicChessTileGenerator;
 import chess.gameStates.GameStateID;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

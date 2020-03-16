@@ -1,5 +1,7 @@
-package chess;
+package chess.UI;
 
+import chess.BoardModel;
+import chess.BoardMove;
 import chess.gameStates.GameStateID;
 
 public interface IChessUI {

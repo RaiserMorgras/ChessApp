@@ -1,5 +1,6 @@
-package chess;
+package chess.UI;
 
+import chess.BoardMove;
 import org.apache.logging.log4j.Logger;
 
 import java.util.Scanner;

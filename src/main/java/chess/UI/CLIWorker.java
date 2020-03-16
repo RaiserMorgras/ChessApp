@@ -1,4 +1,4 @@
-package chess;
+package chess.UI;
 
 public class CLIWorker extends IOStreamUIWorker {
     public CLIWorker() {

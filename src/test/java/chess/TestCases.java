@@ -1,5 +1,7 @@
 package chess;
 
+import chess.UI.IChessUI;
+import chess.UI.IOStreamUIWorker;
 import chess.figures.Pawn;
 import chess.gameStates.GameStateID;
 import org.junit.Assert;

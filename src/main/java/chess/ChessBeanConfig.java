@@ -1,5 +1,7 @@
 package chess;
 
+import chess.UI.IChessUI;
+import chess.UI.IOStreamUIWorker;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

@@ -1,5 +1,6 @@
 package chess;
 
+import chess.UI.IChessUI;
 import chess.figures.ChessFigure;
 import chess.gameStates.StateControl;
 
