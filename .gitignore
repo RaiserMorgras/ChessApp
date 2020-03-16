@@ -2,4 +2,5 @@
 ChessApp.iml
 out/
 target/
-LOG.*
+generalLogs/
+*.json

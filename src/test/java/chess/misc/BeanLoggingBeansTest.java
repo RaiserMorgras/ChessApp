@@ -1,6 +1,8 @@
 package chess.misc;
 
 import chess.*;
+import chess.UI.CLIWorker;
+import chess.UI.IChessUI;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -16,7 +18,7 @@ public class BeanLoggingBeansTest {
     @Test
     public void afterPropertiesSet() {
         ApplicationContext ctx = new AnnotationConfigApplicationContext(TestBeanLoggingConfig.class);
-        File logFile = new File("LOG.beans");
+        File logFile = new File("generalLogs/LOG.beans");
 
         assertTrue(logFile.exists());
     }

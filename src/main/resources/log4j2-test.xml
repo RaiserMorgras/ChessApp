@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Configuration>
     <Appenders>
-        <File name="info" fileName="LOG.info">
+        <File name="info" fileName="generalLogs/LOG.info">
             <ThresholdFilter level="warn" onMatch="DENY" onMismatch="ACCEPT"/>
             <PatternLayout pattern="%m%n"/>
         </File>
-        <File name="error" fileName="LOG.error">
+        <File name="error" fileName="generalLogs/LOG.error">
             <ThresholdFilter level="warn" />
             <PatternLayout pattern="%m%n"/>
         </File>
-        <File name="beans-info" fileName="LOG.beans" append="false">
+        <File name="beans-info" fileName="generalLogs/LOG.beans" append="false">
             <PatternLayout pattern="%level bean: %m%n"/>
         </File>
     </Appenders>
