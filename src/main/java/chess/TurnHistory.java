@@ -4,18 +4,18 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
-public class MovesHistory{
+public class TurnHistory {
     private final List<TurnInfoModel> turnsList;
     private Iterator<TurnInfoModel> iterator = null;
 
-    public MovesHistory() {
+    public TurnHistory() {
         turnsList = new LinkedList<>();
     }
     public void addTurn(TurnInfoModel turnInfoModel) {
         turnsList.add(turnInfoModel);
     }
 
-    public MovesHistory beginIteration() {
+    public TurnHistory beginIteration() {
         iterator = turnsList.iterator();
         return this;
     }
