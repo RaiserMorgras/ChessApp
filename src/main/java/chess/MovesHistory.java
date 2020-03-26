@@ -5,29 +5,27 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class MovesHistory{
-    private final List<BoardMove> moves;
-    private Iterator<BoardMove> iterator = null;
+    private final List<TurnInfoModel> turnsList;
+    private Iterator<TurnInfoModel> iterator = null;
 
     public MovesHistory() {
-        moves = new LinkedList<>();
+        turnsList = new LinkedList<>();
     }
-    public void pushMove(BoardMove move) {
-        moves.add(move);
+    public void addTurn(TurnInfoModel turnInfoModel) {
+        turnsList.add(turnInfoModel);
     }
-    public BoardMove lastMove() {
-        return moves.get(moves.size() - 1);
-    }
+
     public MovesHistory beginIteration() {
-        iterator = moves.iterator();
+        iterator = turnsList.iterator();
         return this;
     }
-    public boolean hasNextMove() {
+    public boolean hasNextTurn() {
         if (iterator == null) {
             throw new NullPointerException("hasNextMove() called before beginIteration()");
         }
         return iterator.hasNext();
     }
-    public BoardMove nextMove() {
+    public TurnInfoModel nextTurn() {
         if (iterator == null) {
             throw new NullPointerException("nextMove() called before beginIteration()");
         }
