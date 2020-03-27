@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Configuration>
     <Appenders>
-        <File name="info" fileName="generalLogs/LOG.info">
+        <File name="info" fileName="generalLogs/LOG.info" append = "false">
             <ThresholdFilter level="warn" onMatch="DENY" onMismatch="ACCEPT"/>
             <PatternLayout pattern="%m%n"/>
         </File>
-        <File name="error" fileName="generalLogs/LOG.error">
+        <File name="error" fileName="generalLogs/LOG.error" append="false">
             <ThresholdFilter level="warn" />
             <PatternLayout pattern="%m%n"/>
         </File>
