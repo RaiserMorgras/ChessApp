@@ -12,7 +12,7 @@ import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 
 @Configuration
-public class TurnRecordingBeanConfig {
+public class ChessTurnRecordConfig {
 
     @Bean
     public InputStream inputStream() {
@@ -30,9 +30,9 @@ public class TurnRecordingBeanConfig {
     }
     @Bean
     public GameControl gameControl(
-            IChessUI chessUI, BoardModel boardModel, TurnHistory turnHistory
+            IChessUI chessUI, BoardModel boardModel, ChessMatchesDAO matchesDao
             ) {
-        return new GameControlTurnRecording(chessUI, boardModel, turnHistory);
+        return new GameControlTurnRecording(chessUI, boardModel, matchesDao);
     }
     @Bean IChessUI chessUI(InputStream inputStream, Logger infoLogger, Logger errorLogger) {
         return new LoggingUIWorkerImpl(inputStream, infoLogger, errorLogger);
@@ -43,6 +43,10 @@ public class TurnRecordingBeanConfig {
     @Bean
     public TurnHistory turnHistory() {
         return new TurnHistory();
+    }
+    @Bean
+    public ChessMatchesDAO matchesDao(TurnHistory turnHistory) {
+        return new ChessMatchesDaoMemory(turnHistory);
     }
     @Bean
     public Logger errorLogger() {
