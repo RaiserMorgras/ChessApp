@@ -2,11 +2,15 @@ package chess;
 
 import chess.UI.IChessUI;
 import chess.figures.ChessFigure;
+import chess.gameStates.GameStateID;
 import chess.gameStates.StateControl;
+
+import java.util.Date;
 
 public class GameControl {
     protected final IChessUI uiWorker;
     protected final BoardModel boardModel;
+    protected final int matchID;
 
     protected StateControl stateControl;
     protected int turnCount;
@@ -15,6 +19,11 @@ public class GameControl {
     public GameControl(IChessUI uiWorker, BoardModel boardModel) {
         this.uiWorker = uiWorker;
         this.boardModel = boardModel;
+        this.matchID = generateMatchID();
+    }
+    protected int generateMatchID() {
+        Date date = new Date();
+        return date.hashCode();
     }
     public void start() {
         initState();
@@ -39,7 +48,8 @@ public class GameControl {
             boolean moveValidationResult = boardModel.validateMove(lastBoardMove, stateControl.getStateID());
             if (moveValidationResult) {
                 lastTakenFigure = boardModel.performTurn(lastBoardMove);
-                turnCount++;
+                if (stateControl.getStateID() == GameStateID.BLACK_PLAYER_TURN)
+                    turnCount++;
             }
             else {
                 uiWorker.putErrorMessage(null, "The turn " + lastBoardMove +" is not valid");
