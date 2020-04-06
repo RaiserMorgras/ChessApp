@@ -2,12 +2,13 @@ package chess;
 
 import chess.UI.IChessUI;
 import chess.gameStates.GameStateID;
+import chess.web.ChessMatchesDAO;
 
 public class GameControlTurnRecording extends GameControl {
-    protected TurnHistory turnHistory;
-    public GameControlTurnRecording(IChessUI uiWorker, BoardModel boardModel, TurnHistory turnHistory) {
+    protected ChessMatchesDAO matchesDAO;
+    public GameControlTurnRecording(IChessUI uiWorker, BoardModel boardModel, ChessMatchesDAO matchesDAO) {
         super(uiWorker, boardModel);
-        this.turnHistory = turnHistory;
+        this.matchesDAO = matchesDAO;
     }
 
     @Override
@@ -19,7 +20,7 @@ public class GameControlTurnRecording extends GameControl {
                 new TurnInfoModel(this.lastBoardMove,
                         turnCountAtTurnStart,
                         stateAtTurnStart);
-        turnHistory.addTurn(turnInfoModel);
+        matchesDAO.saveTurn(matchID, turnInfoModel);
     }
 
 
