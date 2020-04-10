@@ -11,9 +11,14 @@ public class TurnHistory {
     public TurnHistory() {
         turnsList = new LinkedList<>();
     }
+    public TurnHistory(List<TurnInfoModel> turnsList) {
+        this.turnsList = List.copyOf(turnsList);
+    }
+
     public void addTurn(TurnInfoModel turnInfoModel) {
         turnsList.add(turnInfoModel);
     }
+
 
     public TurnHistory beginIteration() {
         iterator = turnsList.iterator();
