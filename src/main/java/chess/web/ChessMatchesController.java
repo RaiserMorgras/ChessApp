@@ -1,13 +1,14 @@
 package chess.web;
 
 
-import com.google.gson.Gson;
-import org.springframework.beans.factory.annotation.Autowired;
+import chess.TurnInfoModel;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.List;
 
 @Controller
 @RequestMapping(path = "/match/{matchID}")
@@ -20,7 +21,7 @@ public class ChessMatchesController {
     }
 
     @GetMapping(produces = "application/json")
-    public String getMatchData(@PathVariable int matchID) {
-        return new Gson().toJson(chessMatchesDAO.getMatch(matchID));
+    public List<TurnInfoModel> getMatchData(@PathVariable int matchID) {
+        return chessMatchesDAO.getMatch(matchID);
     }
 }
