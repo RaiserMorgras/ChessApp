@@ -1,7 +1,6 @@
 package chess.web;
 
 import chess.BoardMove;
-import chess.TurnHistory;
 import chess.TurnInfoModel;
 import chess.gameStates.GameStateID;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -33,12 +32,11 @@ public class ChessMatchesDaoSql implements ChessMatchesDAO {
     }
 
     @Override
-    public TurnHistory getMatch(int id) {
-        List<TurnInfoModel> turnInfoModels= this.jdbcTemplate.query(
+    public List<TurnInfoModel> getMatch(int id) {
+        return this.jdbcTemplate.query(
                 "SELECT TurnNumber, PlayerID, XFrom, YFrom, XTo, YTo " +
                         "FROM Turns " +
                         "WHERE MatchID=?", new Integer[]{id}, turnRowMapper);
-        return new TurnHistory(turnInfoModels);
     }
 
     @Override

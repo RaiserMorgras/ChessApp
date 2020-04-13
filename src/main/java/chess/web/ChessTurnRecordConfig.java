@@ -10,6 +10,8 @@ import org.springframework.context.annotation.Configuration;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
+import java.util.LinkedList;
+import java.util.List;
 
 @Configuration
 public class ChessTurnRecordConfig {
@@ -25,8 +27,7 @@ public class ChessTurnRecordConfig {
                 "h5 f7\n" +
                 "e8 f7\n" +
                 "c4 f7\n";
-        InputStream is = new ByteArrayInputStream(input.getBytes());
-        return is;
+        return new ByteArrayInputStream(input.getBytes());
     }
     @Bean
     public GameControl gameControl(
@@ -41,12 +42,12 @@ public class ChessTurnRecordConfig {
         return new BoardModel(8, 8, new ClassicChessTileGenerator());
     }
     @Bean
-    public TurnHistory turnHistory() {
-        return new TurnHistory();
+    public List<TurnInfoModel> turnList() {
+        return new LinkedList<>();
     }
     @Bean
-    public ChessMatchesDAO matchesDao(TurnHistory turnHistory) {
-        return new ChessMatchesDaoMemory(turnHistory);
+    public ChessMatchesDAO matchesDao(List<TurnInfoModel> turnList) {
+        return new ChessMatchesDaoMemory(turnList);
     }
     @Bean
     public Logger errorLogger() {

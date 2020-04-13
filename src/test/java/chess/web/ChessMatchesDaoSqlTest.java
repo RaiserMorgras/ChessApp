@@ -1,10 +1,8 @@
 package chess.web;
 
 import chess.BoardMove;
-import chess.TurnHistory;
 import chess.TurnInfoModel;
 import chess.gameStates.GameStateID;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -14,7 +12,7 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
 import javax.sql.DataSource;
 
-import java.sql.Driver;
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -29,11 +27,10 @@ public class ChessMatchesDaoSqlTest {
 
     @Test
     public void getMatch() {
-        TurnHistory turnHistory = daoSql.getMatch(1);
-        turnHistory.beginIteration();
-        TurnInfoModel turn = turnHistory.nextTurn();
+        List<TurnInfoModel> turnList = daoSql.getMatch(1);
 
-        assertEquals("e2 e4", turn.getMove().toString());
+        assertEquals(2, turnList.size());
+        assertEquals("e2 e4", turnList.get(0).getMove().toString());
     }
 
     @Test
@@ -43,12 +40,12 @@ public class ChessMatchesDaoSqlTest {
 
         daoSql.saveTurn(1, blackTurn);
 
-        TurnHistory turnHistory = daoSql.getMatch(1);
-        turnHistory.beginIteration();
-        turnHistory.nextTurn(); //skip first turn
-        TurnInfoModel turn = turnHistory.nextTurn();
-
-        assertEquals("e7 e5", turn.getMove().toString());
+        List<TurnInfoModel> turnList = daoSql.getMatch(1);
+        assertEquals(2, turnList.size());
+        //asserting first turn
+        assertEquals("e2 e4", turnList.get(0).getMove().toString());
+        //asserting recently added second turn
+        assertEquals("e7 e5", turnList.get(1).getMove().toString());
     }
 }
 
