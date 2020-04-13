@@ -19,6 +19,8 @@ import static org.junit.Assert.*;
 public class ChessMatchesDaoSqlTest {
     private AnnotationConfigApplicationContext ctx;
     private ChessMatchesDaoSql daoSql;
+    private final String firstMoveString = "e2 e4";
+    private final String secondMoveString = "e7 e5";
     @Before
     public void setUp(){
         ctx = new AnnotationConfigApplicationContext(HSqlDaoConfig.class);
@@ -30,12 +32,12 @@ public class ChessMatchesDaoSqlTest {
         List<TurnInfoModel> turnList = daoSql.getMatch(1);
 
         assertEquals(2, turnList.size());
-        assertEquals("e2 e4", turnList.get(0).getMove().toString());
+        assertEquals(firstMoveString, turnList.get(0).getMove().toString());
     }
 
     @Test
     public void saveTurn() {
-        TurnInfoModel blackTurn = new TurnInfoModel(BoardMove.parseBoardMove("e7 e5"),
+        TurnInfoModel blackTurn = new TurnInfoModel(BoardMove.parseBoardMove(secondMoveString),
                 1, GameStateID.BLACK_PLAYER_TURN);
 
         daoSql.saveTurn(1, blackTurn);
@@ -43,9 +45,9 @@ public class ChessMatchesDaoSqlTest {
         List<TurnInfoModel> turnList = daoSql.getMatch(1);
         assertEquals(2, turnList.size());
         //asserting first turn
-        assertEquals("e2 e4", turnList.get(0).getMove().toString());
+        assertEquals(firstMoveString, turnList.get(0).getMove().toString());
         //asserting recently added second turn
-        assertEquals("e7 e5", turnList.get(1).getMove().toString());
+        assertEquals(secondMoveString, turnList.get(1).getMove().toString());
     }
 }
 
