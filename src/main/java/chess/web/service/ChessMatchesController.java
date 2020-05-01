@@ -18,7 +18,7 @@ import java.util.UUID;
 public class ChessMatchesController {
     private ChessMatchesDAO chessMatchesDAO;
 
-    public void setChessMatchesDAO(ChessMatchesDAO chessMatchesDAO) {
+    public ChessMatchesController(ChessMatchesDAO chessMatchesDAO) {
         this.chessMatchesDAO = chessMatchesDAO;
     }
 

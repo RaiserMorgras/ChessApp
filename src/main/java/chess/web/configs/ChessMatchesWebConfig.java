@@ -12,9 +12,7 @@ public class ChessMatchesWebConfig {
 
     @Bean
     public ChessMatchesController controller(ChessMatchesDAO matchesDAO) {
-        ChessMatchesController controller = new ChessMatchesController();
-        controller.setChessMatchesDAO(matchesDAO);
-        return controller;
+        return new ChessMatchesController(matchesDAO);
     }
 
 }
