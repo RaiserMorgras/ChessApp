@@ -7,12 +7,12 @@ import chess.model.BoardMove;
 import chess.model.states.GameStateID;
 import chess.model.states.StateControl;
 
-import java.util.Date;
+import java.util.UUID;
 
 public class GameControl {
     protected final IChessUI uiWorker;
     protected final BoardModel boardModel;
-    protected final int matchID;
+    protected final UUID matchID;
 
     protected StateControl stateControl;
     protected int turnCount;
@@ -23,9 +23,11 @@ public class GameControl {
         this.boardModel = boardModel;
         this.matchID = generateMatchID();
     }
-    protected int generateMatchID() {
-        Date date = new Date();
-        return date.hashCode();
+    protected UUID generateMatchID() {
+        return UUID.randomUUID();
+    }
+    public UUID getMatchID() {
+        return matchID;
     }
     public void start() {
         initState();

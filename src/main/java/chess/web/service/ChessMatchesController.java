@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
+import java.util.UUID;
 
 @Controller
 @RequestMapping(path = "/match/{matchID}")
@@ -22,7 +23,7 @@ public class ChessMatchesController {
     }
 
     @GetMapping(produces = "application/json")
-    public List<TurnInfoModel> getMatchData(@PathVariable int matchID) {
+    public List<TurnInfoModel> getMatchData(@PathVariable UUID matchID) {
         return chessMatchesDAO.getMatch(matchID);
     }
 }

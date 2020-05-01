@@ -8,6 +8,7 @@ import org.springframework.jdbc.core.RowMapper;
 
 import javax.sql.DataSource;
 import java.util.List;
+import java.util.UUID;
 
 public class ChessMatchesDaoSql implements ChessMatchesDAO {
     protected JdbcTemplate jdbcTemplate;
@@ -32,15 +33,15 @@ public class ChessMatchesDaoSql implements ChessMatchesDAO {
     }
 
     @Override
-    public List<TurnInfoModel> getMatch(int id) {
+    public List<TurnInfoModel> getMatch(UUID id) {
         return this.jdbcTemplate.query(
                 "SELECT TurnNumber, PlayerID, XFrom, YFrom, XTo, YTo " +
                         "FROM Turns " +
-                        "WHERE MatchID=?", new Integer[]{id}, turnRowMapper);
+                        "WHERE MatchID=?", new UUID[]{id}, turnRowMapper);
     }
 
     @Override
-    public void saveTurn(int matchID, TurnInfoModel turnInfoModel) {
+    public void saveTurn(UUID matchID, TurnInfoModel turnInfoModel) {
         String sqlStatement = "INSERT INTO Turns(MatchID, TurnNumber, PlayerID, " +
                 "XFrom, YFrom, XTo, YTo) " +
                 "VALUES (?,?,?,?,?,?,?)";
