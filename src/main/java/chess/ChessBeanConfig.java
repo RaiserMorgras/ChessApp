@@ -2,6 +2,10 @@ package chess;
 
 import chess.UI.IChessUI;
 import chess.UI.IOStreamUIWorker;
+import chess.control.GameControl;
+import chess.model.BoardModel;
+import chess.model.ClassicChessTileGenerator;
+import chess.model.TileGenerator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

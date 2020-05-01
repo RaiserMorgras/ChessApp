@@ -1,8 +1,8 @@
 package chess.UI;
 
-import chess.BoardModel;
-import chess.BoardMove;
-import chess.gameStates.GameStateID;
+import chess.model.BoardModel;
+import chess.model.BoardMove;
+import chess.model.states.GameStateID;
 
 import org.apache.logging.log4j.Logger;
 

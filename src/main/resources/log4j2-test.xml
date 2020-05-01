@@ -17,7 +17,7 @@
         <Logger name="infoOutput" level="info">
             <AppenderRef ref="info"/>
         </Logger>
-        <Logger name="chess.misc.BeanLoggingBeans" level = "info">
+        <Logger name="chess.BeanLoggingBeans" level = "info">
             <AppenderRef ref="beans-info"/>
         </Logger>
         <Root level="warn">

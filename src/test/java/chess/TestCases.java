@@ -2,8 +2,13 @@ package chess;
 
 import chess.UI.IChessUI;
 import chess.UI.IOStreamUIWorker;
-import chess.figures.Pawn;
-import chess.gameStates.GameStateID;
+import chess.control.GameControl;
+import chess.model.figures.Pawn;
+import chess.model.BoardModel;
+import chess.model.BoardMove;
+import chess.model.ClassicChessTileGenerator;
+import chess.model.Tile;
+import chess.model.states.GameStateID;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -22,6 +27,7 @@ public class TestCases {
     public void testCase1() {
         String command = "e2 e4";
         BoardMove move = BoardMove.parseBoardMove(command);
+        assertNotNull(move);
         boolean result = bm.validateMove(move, GameStateID.WHITE_PLAYER_TURN);
         assertTrue(result);
     }
@@ -51,6 +57,7 @@ public class TestCases {
         Tile currentTile = bm.getTile(6, 4);
         assertEquals(new Pawn(false).toString(), currentTile.toString());
         assertFalse(currentTile.isPlacedFigureWhite());
+        assertNotNull(move);
         assertEquals(-2, move.getRowIndexShift());
         assertTrue(currentTile.getPlacedFigure().validateMove(move, bm));
         boolean result = bm.validateMove(move, GameStateID.BLACK_PLAYER_TURN);

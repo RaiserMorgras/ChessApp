@@ -1,6 +1,6 @@
 package chess.UI;
 
-import chess.BoardMove;
+import chess.model.BoardMove;
 import org.apache.logging.log4j.Logger;
 
 import java.io.InputStream;
